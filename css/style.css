@@ -45,6 +45,8 @@ body {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+  position: relative;
+  height: 80px;
 }
 .btn {
   position: absolute;
@@ -72,6 +74,7 @@ body {
 }
 .no-btn {
   left: 54%;
+  position: absolute;
 }
 
 .result-container {
