@@ -26,3 +26,7 @@ noBtn.addEventListener('pointerdown', (e) => {
   e.preventDefault();
   moveNoButton();
 });
+noBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+});
+
