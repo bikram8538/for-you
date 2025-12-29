@@ -1,28 +1,28 @@
-const questionContainer = document.querySelector('.question-container');
-const resultContainer = document.querySelector('.result-container');
-const gifResult = document.querySelector('.gif-result');
-const heartLoader = document.querySelector('.cssload-main');
-const yesBtn = document.querySelector('.js-yes-btn');
-const noBtn = document.querySelector('.js-no-btn');
+function moveNoButton() {
+  const containerRect = questionContainer.getBoundingClientRect();
+  const btnRect = noBtn.getBoundingClientRect();
 
-// /change the postion of no button
-noBtn.addEventListener('mouseover', () => {
-	const newX = Math.floor(Math.random() * questionContainer.offsetWidth);
-	const newY = Math.floor(Math.random() * questionContainer.offsetWidth);
+  const maxX = containerRect.width - btnRect.width;
+  const maxY = containerRect.height - btnRect.height;
 
-	noBtn.style.left = `${newX}px`;
-	noBtn.style.top = `${newY}px`;
+  const newX = Math.random() * maxX;
+  const newY = Math.random() * maxY;
+
+  noBtn.style.left = `${newX}px`;
+  noBtn.style.top = `${newY}px`;
+}
+
+/* Desktop hover */
+noBtn.addEventListener('mouseover', moveNoButton);
+
+/* Mobile touch */
+noBtn.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // stops tap
+  moveNoButton();
 });
 
-// yes button functionality
-
-yesBtn.addEventListener('click', () => {
-	questionContainer.style.display = 'none';
-	heartLoader.style.display = 'inherit';
-
-	const timeoutId = setTimeout(() => {
-		heartLoader.style.display = 'none';
-		resultContainer.style.display = 'inherit';
-		gifResult.play();
-	}, 3000);
+/* Extra safety for modern devices */
+noBtn.addEventListener('pointerdown', (e) => {
+  e.preventDefault();
+  moveNoButton();
 });
